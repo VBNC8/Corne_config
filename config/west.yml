@@ -1,14 +1,11 @@
 manifest:
   remotes:
-    - name: zmkfirmware
-      url-base: https://github.com/zmkfirmware
+    - name: caksoylar
+      url-base: https://github.com/caksoylar
   projects:
     - name: zmk
-      remote: zmkfirmware
-      revision: v0.3-branch
+      remote: caksoylar
+      revision: v0.3-mouse-pointing # Das ist der "fertige" Zweig
       import: app/west.yml
-    - name: zmk-pointing
-      url: https://github.com/zmk-pointing/zmk-pointing.git
-      revision: main
   self:
     path: config
