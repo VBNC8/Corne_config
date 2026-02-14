@@ -5,7 +5,7 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: v0.5.1 # Eine stabile, bekannte Version
+      revision: 3954602f23237191147071f6a1d8249814470d01 # Stand vom 31. Jan 2025 (Stabil)
       import: app/west.yml
   self:
     path: config
