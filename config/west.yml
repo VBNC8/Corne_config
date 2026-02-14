@@ -12,5 +12,6 @@ manifest:
     - name: zmk-pointing
       remote: zmk-pointing
       revision: main
+      path: modules/zmk-pointing # Erzwingt einen sauberen Pfad
   self:
     path: config
