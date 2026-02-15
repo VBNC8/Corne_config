@@ -21,5 +21,7 @@
         gpio-hog;
         gpios = <17 GPIO_ACTIVE_HIGH>;
         output-high;
+        /* Dies aktiviert den stärkeren Strommodus */
+        drive-mode = "n0h1";
     };
 };
