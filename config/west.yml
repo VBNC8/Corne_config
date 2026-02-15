@@ -5,7 +5,7 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: 489953288a87693248386f6a70a8d6e32152843b # Stand vor dem Pillbug-Fehler
+      revision: v0.3-branch
       import: app/west.yml
   self:
     path: config
