@@ -1,1 +1,20 @@
-osource "Kconfig.pointing"
+menu "Pointing"
+
+config ZMK_INPUT
+    bool "Input event support"
+    default y
+
+config ZMK_INPUT_MOUSE_PS2
+    bool "PS/2 mouse input driver"
+    depends on PS2
+    default y
+
+config ZMK_INPUT_MOUSE_PS2_SENSITIVITY
+    int "Sensitivity"
+    default 120
+
+config ZMK_INPUT_MOUSE_PS2_REPORT_INTERVAL
+    int "Report Interval"
+    default 10
+
+endmenu
