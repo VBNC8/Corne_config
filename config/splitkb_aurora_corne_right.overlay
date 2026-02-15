@@ -1,11 +1,4 @@
 / {
-    /* Wir erzwingen P0.13 auf High, ohne den 'Regulator' Umweg */
-    p0_13_en: gpio_hog {
-        compatible = "zmk,gpio-hog";
-        gpios = <13 GPIO_ACTIVE_HIGH>;
-        output-high;
-    };
-
     trackpoint: trackpoint {
         compatible = "zmk,input-mouse-ps2";
         data-gpios = <&gpio0 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
@@ -15,13 +8,5 @@
     trackpoint_listener {
         compatible = "zmk,input-listener";
         device = <&trackpoint>;
-    };
-};
-
-/* Wir müssen dem GPIO-Controller sagen, dass er den Hog-Knoten verarbeiten soll */
-&gpio0 {
-    status = "okay";
-    p0_13_en {
-        status = "okay";
     };
 };
