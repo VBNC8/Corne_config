@@ -1,16 +1,16 @@
 / {
-    /* Dieser Block aktiviert den MOSFET für VCC/3.3V */
     vcc_3v3_regulator: vcc_3v3_regulator {
         compatible = "regulator-fixed";
         regulator-name = "vcc_3v3_reg";
-        gpio = <&gpio0 13 GPIO_ACTIVE_HIGH>;
+        /* Hier lag der Fehler: 'gpios' statt 'gpio' */
+        gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
         enable-active-high;
         regulator-always-on;
         regulator-boot-on;
     };
 
     trackpoint: trackpoint {
-        compatible = "zmk,input-ps2";
+        compatible = "zmk,input-mouse-ps2";
         data-gpios = <&gpio0 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         clock-gpios = <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
     };
