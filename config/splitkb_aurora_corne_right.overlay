@@ -1,15 +1,13 @@
 / {
     trackpoint: trackpoint {
         compatible = "zmk,input-mouse-ps2";
-        /* Hier sind 17 und 20 jetzt getauscht */
-        data-gpios = <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        clock-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        /* Wir bleiben bei der getauschten Belegung, die wir zuletzt hatten */
+        data-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        clock-gpios = <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
     };
 
     trackpoint_listener {
         compatible = "zmk,input-listener";
         device = <&trackpoint>;
-        /* Wir fügen eine Skalierung hinzu, damit wir jede Bewegung sehen */
-        input-processors = <&zip_xy_scaler 2 1>;
     };
 };
