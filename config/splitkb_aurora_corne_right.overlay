@@ -1,4 +1,16 @@
 / {
+    /* Dieser Block zwingt P0.13 auf High */
+    ext_power_control: ext_power_control {
+        compatible = "regulator-fixed";
+        regulator-name = "ext-power-regulator";
+        /* P0.13 entspricht gpio0 Pin 13 */
+        gpio = <&gpio0 13 GPIO_ACTIVE_HIGH>;
+        enable-active-high;
+        regulator-always-on;
+        regulator-boot-on;
+    };
+
+{
     /* Der 'Knoten' für den Trackpoint */
     trackpoint: trackpoint_input {
         compatible = "zmk,input-ps2";
