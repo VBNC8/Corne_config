@@ -1,4 +1,4 @@
 build:
   settings:
     zephyr:
-      - Kconfig: Kconfig
+      - Kconfig: zephyr/Kconfig
