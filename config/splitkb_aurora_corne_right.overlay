@@ -1,15 +1,24 @@
 / {
+    /* Wir definieren Pin 17 als festen Spannungsregler */
+    tp_power: tp_power {
+        compatible = "regulator-fixed";
+        regulator-name = "trackpoint_power";
+        /* In Zephyr/ZMK ist 'gpio' (Einzahl) oft der richtige Key */
+        gpio = <&gpio0 17 GPIO_ACTIVE_HIGH>;
+        regulator-always-on;
+        regulator-boot-on;
+    };
+
     trackpoint: trackpoint {
         compatible = "zmk,input-mouse-ps2";
-        /* Wir bleiben bei Data=8, Clock=6 (getauscht) */
         data-gpios = <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         clock-gpios = <&gpio0 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
     };
 
-/*
-    trackpoint_listener {
+    /* Listener ist auskommentiert, damit die Tastatur nicht einfriert */
+    /* trackpoint_listener {
         compatible = "zmk,input-listener";
         device = <&trackpoint>;
     };
-*/
+    */
 };
