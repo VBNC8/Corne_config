@@ -6,6 +6,11 @@
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/mouse.h>
 
+&lt {
+    tapping-term-ms = <200>;
+    quick-tap-ms = <150>; // Das ermöglicht den Repeat!
+};
+
 / {
     sensors {
         compatible = "zmk,keymap-sensors";
