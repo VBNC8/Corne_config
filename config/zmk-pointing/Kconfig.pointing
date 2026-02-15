@@ -1,0 +1,8 @@
+config ZMK_INPUT
+    bool "Input event support"
+
+config ZMK_INPUT_MOUSE_PS2
+    bool "PS/2 mouse input driver"
+    depends on ZMK_INPUT && PS2
+    help
+      Enable the PS/2 mouse input driver.
