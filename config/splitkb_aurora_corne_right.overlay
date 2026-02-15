@@ -1,12 +1,15 @@
 / {
-    trackpoint: virtual_input {
+    /* Der 'Knoten' für den Trackpoint */
+    trackpoint: trackpoint_input {
         compatible = "zmk,input-ps2";
+        /* Hier nutzen wir die Pin-Nummern direkt am GPIO Controller 0 */
         data-gpios = <&gpio0 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         clock-gpios = <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
     };
 
-    input_relay_config {
-        compatible = "zmk,input-relay";
+    /* Das sagt ZMK, dass dieser Input-Strom verarbeitet werden soll */
+    zmk_input_listener {
+        compatible = "zmk,input-listener";
         device = <&trackpoint>;
     };
 };
