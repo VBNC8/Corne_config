@@ -7,8 +7,5 @@ manifest:
       remote: zmkfirmware
       revision: v0.3-branch
       import: app/west.yml
-    - name: zmk-pointing
-      url: https://github.com/zmk-pointing/zmk-pointing.git
-      revision: main
   self:
     path: config
