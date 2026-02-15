@@ -6,8 +6,10 @@
         clock-gpios = <&gpio0 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
     };
 
+/*
     trackpoint_listener {
         compatible = "zmk,input-listener";
         device = <&trackpoint>;
     };
+*/
 };
