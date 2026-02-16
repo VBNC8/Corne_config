@@ -13,6 +13,35 @@
 };
 
 / {
+    /* BEHAVIORS */
+    behaviors {
+        hrm: home_row_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>; 
+            flavor = "balanced";
+            require-prior-idle-ms = <125>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        fast_inc_dec: fast_inc_dec {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            #sensor-binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            tap-ms = <10>; 
+        };
+
+        // Tap-Dance auf P: 1x Tippen = Jiggler AN, 2x Tippen = Jiggler AUS
+        jiggler: jiggler {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>; // Zeitfenster für Doppeltipp etwas großzügiger
+            bindings = <&jiggler_on>, <&jiggler_off>;
+        };
+    };
+
+    /* MAKROS */
     macros {
         durchmesser: durchmesser {
             compatible = "zmk,behavior-macro";
@@ -38,47 +67,41 @@
                 , <&macro_release &kp LSHFT>;
         };
 
-        mobcenter: mobcenter {
+        jiggler_on: jiggler_on {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <30>;
             tap-ms = <30>;
             bindings 
-                = <&macro_press &kp LGUI>
+                = <&kt LCTRL>
+                , <&macro_press &kp LGUI>
                 , <&macro_tap &kp R>
                 , <&macro_release &kp LGUI>
-                , <&macro_wait_time 500> 
-                , <&macro_tap &kp M &kp B &kp L &kp C &kp T &kp R &kp RET>
-                , <&macro_wait_time 1200> 
-                , <&macro_tap &kp C>; 
+                , <&macro_wait_time 500>
+                , <&macro_tap &kp M &kp B &kp L &kp C &kp T &kp R &kp RET>;
+        };
+
+        jiggler_off: jiggler_off {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings 
+                = <&kt LCTRL> 
+                , <&macro_press &kp LALT>
+                , <&macro_tap &kp F4>
+                , <&macro_release &kp LALT>;
         };
     };
 
-    behaviors {
-        hrm: home_row_mods {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>; 
-            flavor = "balanced";
-            require-prior-idle-ms = <125>;
-            bindings = <&kp>, <&kp>;
-        };
-
-        fast_inc_dec: fast_inc_dec {
-            compatible = "zmk,behavior-sensor-rotate-var";
-            #sensor-binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-            tap-ms = <10>; 
-        };
-    };
-
+    /* ENCODER SETUP */
     sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder>;
         triggers-per-rotation = <20>; 
     };
 
+    /* KEYMAP */
     keymap {
         compatible = "zmk,keymap";
 
@@ -114,10 +137,10 @@
 
         adjust_layer {
             bindings = <
-    &none            &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &trans           &trans      &trans      &trans      &trans      &trans   &none
-    &none            &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_CLR       &mobcenter  &trans      &trans      &trans      &trans   &none
-    &none            &ext_power EP_TOG &out OUT_USB    &out OUT_BLE     &trans           &trans           &trans      &trans      &kp C_PREV  &kp C_NEXT  &trans   &none
-                                                       &kp F10          &trans           &trans           &trans      &trans      &trans
+    &none            &out OUT_BLE     &trans           &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &trans      &trans      &trans      &jiggler   &none
+    &none            &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_CLR       &trans           &trans      &trans      &trans      &trans     &none
+    &none            &out OUT_USB     &ext_power EP_TOG &rgb_ug RGB_SAI &rgb_ug RGB_SAD  &trans           &trans           &trans      &kp C_PREV  &kp C_NEXT  &trans     &none
+                                                       &kp F10          &trans           &trans           &trans           &trans      &trans
             >;
             sensor-bindings = <&fast_inc_dec C_BRI_DN C_BRI_UP>;
         };
