@@ -7,13 +7,8 @@
 #include <dt-bindings/zmk/mouse.h>
 #include <dt-bindings/zmk/outputs.h>
 
-&lt {
-    tapping-term-ms = <200>;
-    quick-tap-ms = <150>; 
-};
-
 / {
-    /* TRI-LAYER LOGIK: L1 + L2 = L4 (RGB) */
+    /* TRI-LAYER LOGIK */
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
@@ -64,13 +59,6 @@
             require-prior-idle-ms = <125>;
             bindings = <&kp>, <&kp>;
         };
-
-        fast_inc_dec: fast_inc_dec {
-            compatible = "zmk,behavior-sensor-rotate-var";
-            #sensor-binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-            tap-ms = <10>; 
-        };
     };
 
     keymap {
@@ -113,7 +101,7 @@
     &none            &out OUT_USB     &ext_power EP_TOG &trans          &trans           &trans           &trans           &trans      &kp C_PREV  &kp C_NEXT  &trans     &none
                                                        &kp F10          &trans           &trans           &trans           &trans      &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_BRI_DN C_BRI_UP>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         rgb_layer {
