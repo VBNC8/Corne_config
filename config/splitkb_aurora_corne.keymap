@@ -7,6 +7,15 @@
 #include <dt-bindings/zmk/outputs.h>
 
 / {
+    /* TRI-LAYER LOGIK: Wenn L1 und L2 aktiv sind, schalte L4 ein */
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <1 2>;
+            then-layer = <4>;
+        };
+    };
+
     macros {
         durchmesser: durchmesser {
             compatible = "zmk,behavior-macro";
