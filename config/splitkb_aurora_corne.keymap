@@ -32,11 +32,11 @@
             tap-ms = <10>; 
         };
 
-        // Tap-Dance auf P: 1x Tippen = Jiggler AN, 2x Tippen = Jiggler AUS
+        // Tap-Dance auf P im Adjust-Layer: 1x Tippen = AN, 2x Tippen = AUS
         jiggler: jiggler {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <300>; // Zeitfenster für Doppeltipp etwas großzügiger
+            tapping-term-ms = <300>;
             bindings = <&jiggler_on>, <&jiggler_off>;
         };
     };
@@ -73,7 +73,7 @@
             wait-ms = <30>;
             tap-ms = <30>;
             bindings 
-                = <&kt LCTRL>
+                = <&kt LCTRL> // Lockt CTRL
                 , <&macro_press &kp LGUI>
                 , <&macro_tap &kp R>
                 , <&macro_release &kp LGUI>
@@ -87,21 +87,20 @@
             wait-ms = <30>;
             tap-ms = <30>;
             bindings 
-                = <&kt LCTRL> 
+                = <&kt LCTRL> // Löst ZUERST den CTRL-Lock
+                , <&macro_wait_time 100>
                 , <&macro_press &kp LALT>
                 , <&macro_tap &kp F4>
                 , <&macro_release &kp LALT>;
         };
     };
 
-    /* ENCODER SETUP */
     sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder>;
         triggers-per-rotation = <20>; 
     };
 
-    /* KEYMAP */
     keymap {
         compatible = "zmk,keymap";
 
