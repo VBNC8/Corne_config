@@ -59,7 +59,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        /* Behavior für Backspace: Repeat bei schnellem Doppel-Tap, Layer 3 bei Halten */
+        /* Behavior für Backspace & Space: Repeat bei schnellem Doppel-Tap */
         lt_hp: layer_tap_hold_preferred {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -78,7 +78,7 @@
     &none      &kp Q  &kp W        &kp E        &kp R         &kp T               &kp Y  &kp U          &kp I        &kp O          &kp P       &none
     &none      &kp A  &kp S        &hrm LCTRL D &hrm LSHIFT F &kp G               &kp H  &hrm RSHIFT J  &hrm RCTRL K &kp L          &kp SLASH   &none
     &none      &kp Z  &hrm LALT X  &kp C        &kp V         &kp B               &kp N  &kp M          &kp COMMA    &hrm RALT DOT  &kp DEL     &none
-                               &kp C_PP     &lt 2 ESC     &lt 1 TAB           &lt 1 RET  &lt 2 SPACE  &lt_hp 3 BSPC
+                               &kp C_PP     &lt 2 ESC     &lt 1 TAB           &lt 1 RET  &lt_hp 2 SPACE  &lt_hp 3 BSPC
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
