@@ -48,27 +48,45 @@
         };
     };
 
-behaviors {
-        // Für Ctrl und Alt: Sicher gegen Fehlauslösungen
+    behaviors {
+        // Sicherer für CTRL (verhindert versehentliche Fenster)
         hrm_ctrl: hrm_ctrl {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <240>;
-            quick-tap-ms = <150>;
+            quick-tap-ms = <150>; 
             flavor = "tap-preferred";
             require-prior-idle-ms = <125>;
             bindings = <&kp>, <&kp>;
         };
 
-        // Für Shift: Schneller und aggressiver
+        // Aggressiver für SHIFT (besserer Schreibfluss)
         hrm_shift: hrm_shift {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <180>;    // Kürzerer Weg zum Großbuchstaben
-            quick-tap-ms = <150>;
-            flavor = "balanced";        // Erlaubt das "Rollen" bei Shift
-            require-prior-idle-ms = <0>; // Shift muss sofort da sein
+            tapping-term-ms = <180>;
+            quick-tap-ms = <150>; 
+            flavor = "balanced";
             bindings = <&kp>, <&kp>;
+        };
+
+        // Standard HRM für ALT/RALT
+        hrm: hrm {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>; 
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+        };
+
+        lt_hp: layer_tap_hold_preferred {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>; 
+            flavor = "hold-preferred";
+            bindings = <&mo>, <&kp>;
         };
     };
 
@@ -78,7 +96,7 @@ behaviors {
         default_layer {
             bindings = <
     &none      &kp Q  &kp W        &kp E        &kp R         &kp T               &kp Y  &kp U          &kp I        &kp O          &kp P       &none
-    &none      &kp A  &kp S        &hrm LCTRL D &hrm LSHIFT F &kp G               &kp H  &hrm RSHIFT J  &hrm RCTRL K &kp L          &kp SLASH   &none
+    &none      &kp A  &kp S        &hrm_ctrl LCTRL D &hrm_shift LSHIFT F &kp G               &kp H  &hrm_shift RSHIFT J  &hrm_ctrl RCTRL K &kp L          &kp SLASH   &none
     &none      &kp Z  &hrm LALT X  &kp C        &kp V         &kp B               &kp N  &kp M          &kp COMMA    &hrm RALT DOT  &kp DEL     &none
                                &kp C_PP     &lt 2 ESC     &lt 1 TAB           &lt 1 RET  &lt_hp 2 SPACE  &lt_hp 3 BSPC
             >;
