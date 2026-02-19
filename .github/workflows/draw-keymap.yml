@@ -1,14 +1,4 @@
-name: Draw ZMK keymap
-on:
-  workflow_dispatch:
-  push:
-    paths:
-      - "config/*.keymap"
-
-jobs:
-  draw:
-    uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
+uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
     with:
-      keymap_file: "config/splitkb_aurora_corne.keymap"  # Geändert von keymap_path zu keymap_file
-      output_placeholder: "img/corne.svg"
-      draw_args: "corne:'-k corne_rotated'" # Optional für das Corne-Layout
+      # Gar keine spezifischen Pfade angeben, die Action sucht nach config/*.keymap
+      amend_readme: true # Das versucht sogar, den Link direkt in dein README zu schreiben
