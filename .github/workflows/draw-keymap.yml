@@ -3,13 +3,12 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "config/*.keymap"
+      - "config/splitkb_aurora_corne.keymap"
 
 jobs:
   draw:
     uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
     with:
-      keymap_file: "config/splitkb-aurora-corne.keymap"
-      output_prefix: "img/corne"
-      # Dieser Teil ist entscheidend:
+      keymap_file: "config/splitkb_aurora_corne.keymap" # Exakter Dateiname
+      output_prefix: "img/splitkb_aurora_corne"        # Bildname im img-Ordner
       commit_message: "Update keymap graphics [skip ci]"
