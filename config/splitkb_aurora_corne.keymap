@@ -7,7 +7,7 @@
 #include <dt-bindings/zmk/outputs.h>
 
 / {
-    /* TRI-LAYER LOGIK */
+    /* TRI-LAYER LOGIK: L1 + L2 = L4 */
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
@@ -49,7 +49,7 @@
     };
 
     behaviors {
-        // CTRL & ALT: SCHUTZ VOR FEHLAUSLÖSUNG (tap-preferred)
+        // CTRL & ALT: SCHUTZ VOR FEHLAUSLÖSUNG
         hrm_safe: hrm_safe {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -60,7 +60,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // SHIFT: SCHNELLIGKEIT (balanced)
+        // SHIFT: SCHNELLIGKEIT
         hrm_shift: hrm_shift {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -70,12 +70,13 @@
             bindings = <&kp>, <&kp>;
         };
 
-        lt_hp: layer_tap_hold_preferred {
+        // DAUMEN-LOGIK: Verhindert versehentliche Layer-Wechsel beim Tippen
+        thumb_layer: thumb_layer {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <200>;
-            quick-tap-ms = <200>; 
-            flavor = "hold-preferred";
+            quick-tap-ms = <175>; 
+            flavor = "tap-preferred";
             bindings = <&mo>, <&kp>;
         };
     };
@@ -85,50 +86,50 @@
 
         default_layer {
             bindings = <
-    &none      &kp Q  &kp W        &kp E        &kp R         &kp T               &kp Y  &kp U          &kp I        &kp O          &kp P       &none
-    &none      &kp A  &kp S        &hrm_safe LCTRL D &hrm_shift LSHIFT F &kp G               &kp H  &hrm_shift RSHIFT J  &hrm_safe RCTRL K &kp L          &kp SLASH   &none
-    &none      &kp Z  &hrm_safe LALT X  &kp C        &kp V         &kp B               &kp N  &kp M          &kp COMMA    &hrm_safe RALT DOT  &kp DEL     &none
-                               &kp C_PP     &lt 2 ESC     &lt 1 TAB           &lt 1 RET  &lt_hp 2 SPACE  &lt_hp 3 BSPC
+    &none   &kp Q  &kp W  &kp E  &kp R  &kp T                      &kp Y  &kp U  &kp I  &kp O  &kp P   &none
+    &none   &kp A  &kp S  &hrm_safe LCTRL D &hrm_shift LSHIFT F &kp G  &kp H  &hrm_shift RSHIFT J &hrm_safe RCTRL K &kp L  &kp SLASH  &none
+    &none   &kp Z  &hrm_safe LALT X &kp C  &kp V  &kp B              &kp N  &kp M  &kp COMMA &hrm_safe RALT DOT &kp DEL  &none
+                   &kp C_PP &thumb_layer 2 ESC &thumb_layer 1 TAB      &thumb_layer 1 RET &thumb_layer 2 SPACE &thumb_layer 3 BSPC
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         lower_layer {
             bindings = <
-    &none      &kp GRAVE       &kp LS(GRAVE)       &trans              &trans        &trans              &trans      &trans      &trans      &trans      &trans          &none
-    &none      &kp N1          &kp N2              &kp N3              &kp N4        &kp N5              &kp N6      &kp N7      &kp N8      &kp N9      &kp N0          &none
-    &none      &kp NON_US_BSLH &kp LS(NON_US_BSLH) &kp RA(NON_US_BSLH) &trans        &trans              &kp RA(N7)  &kp RA(N8)  &kp RA(N9)  &kp RA(N0)  &kp NON_US_HASH &none
-                                                   &trans            &kp LGUI        &kp HOME            &kp END     &trans      &trans
+    &none   &kp GRAVE  &kp LS(GRAVE)  &trans  &trans  &trans             &trans  &trans  &trans  &trans  &trans  &none
+    &none   &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                      &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &none
+    &none   &kp NON_US_BSLH &kp LS(NON_US_BSLH) &kp RA(NON_US_BSLH) &trans &trans &kp RA(N7) &kp RA(N8) &kp RA(N9) &kp RA(N0) &kp NON_US_HASH &none
+                            &trans  &kp LGUI  &trans                   &kp HOME  &kp END  &trans
             >;
             sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
         };
 
         raise_layer {
             bindings = <
-    &none      &kp RA(Q)   &kp RA(E)   &trans     &trans     &trans        &kp CARET &kp LBKT      &kp RA(MINUS) &kp SEMI  &kp RPAR        &none
-    &none      &kp SQT     &kp MINUS   &mkp RCLK  &mkp LCLK  &durchmesser  &kp UP    &kp LEFT      &kp DOWN      &kp RIGHT &kp RBKT        &none
-    &none      &kp RA(SQT) &trans      &trans     &trans     &trans        &kp UNDER &kp PLUS      &trans        &trans    &kp RA(RBKT)    &none
-                                       &smiley    &trans     &trans        &trans    &trans        &trans
+    &none   &kp RA(Q) &kp RA(E) &trans  &trans  &trans                  &kp CARET &kp LBKT &kp RA(MINUS) &kp SEMI &kp RPAR &none
+    &none   &kp SQT &kp MINUS &mkp RCLK &mkp LCLK &durchmesser          &kp UP &kp LEFT &kp DOWN &kp RIGHT &kp RBKT &none
+    &none   &kp RA(SQT) &trans &trans &trans &trans                     &kp UNDER &kp PLUS &trans &trans &kp RA(RBKT) &none
+                        &smiley &trans &trans                          &trans &trans &trans
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN>;
         };
 
         adjust_layer {
             bindings = <
-    &none            &out OUT_BLE     &kp F2            &trans           &kp F4           &kp F5           &trans           &trans      &trans      &jigg_off   &jigg_on   &none
-    &none            &bt BT_SEL 0     &bt BT_SEL 1      &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_CLR       &trans           &trans      &trans      &trans      &trans     &none
-    &none            &out OUT_USB     &ext_power EP_TOG &trans           &trans           &trans           &trans           &trans      &kp C_PREV  &kp C_NEXT  &trans     &none
-                                                        &kp F10          &trans           &trans           &trans           &trans      &trans
+    &none   &out OUT_BLE &kp F2 &trans &kp F4 &kp F5                    &trans &trans &trans &jigg_off &jigg_on &none
+    &none   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR &trans &trans &trans &trans &trans &none
+    &none   &out OUT_USB &ext_power EP_TOG &trans &trans &trans         &trans &trans &kp C_PREV &kp C_NEXT &trans &none
+                         &kp F10 &trans &trans                         &trans &trans &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         rgb_layer {
             bindings = <
-    &none  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &none
-    &none  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &none
-    &none  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &none
-                           &trans  &trans  &trans    &trans  &trans  &trans
+    &none  &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &none
+    &none  &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &none
+    &none  &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &none
+                  &trans &trans &trans           &trans &trans &trans
             >;
         };
     };
