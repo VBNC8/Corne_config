@@ -7,8 +7,26 @@ on:
 
 jobs:
   draw:
-    uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
-    with:
-      keymap_file: "config/splitkb_aurora_corne.keymap" # Exakter Dateiname
-      output_prefix: "img/splitkb_aurora_corne"        # Bildname im img-Ordner
-      commit_message: "Update keymap graphics [skip ci]"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Wichtig für das Schreiben ins Repo
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install keymap-drawer
+        run: pip install keymap-drawer
+
+      - name: Draw keymap
+        run: |
+          mkdir -p img
+          keymap parse -z config/splitkb_aurora_corne.keymap > config/corne.yaml
+          keymap draw config/corne.yaml > img/splitkb_aurora_corne.svg
+
+      - name: Commit and push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add img/splitkb_aurora_corne.svg
+          git commit -m "Update keymap image [skip ci]" || exit 0
+          git push
