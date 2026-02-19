@@ -1,4 +1,15 @@
-uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
+name: Draw ZMK keymap
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "config/*.keymap"
+
+jobs:
+  draw:
+    uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
     with:
-      # Gar keine spezifischen Pfade angeben, die Action sucht nach config/*.keymap
-      amend_readme: true # Das versucht sogar, den Link direkt in dein README zu schreiben
+      keymap_file: "config/splitkb-aurora-corne.keymap"
+      output_prefix: "img/corne"
+      # Dieser Teil ist entscheidend:
+      commit_message: "Update keymap graphics [skip ci]"
