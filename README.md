@@ -28,6 +28,6 @@ Ein kompaktes Ein-Tasten-Keypad für spezifische Shortcuts.
 * **Funktion:** Toggle-Switch für `Strg +` und `Strg -`.
 * **Hardware:** Mechanischer MX-Switch, integrierte Warn-LED (Wechselblinker), 3D-gedrucktes Gehäuse mit Einschubschienen
   
-![Macro Pad](./img/MinMac-01.jpg)
+![Macro Pad](./img/MicMac-01.jpg)
 
-![Macro Pad](./img/MinMac-02.jpg)
+![Macro Pad](./img/MicMac-02.jpg)
