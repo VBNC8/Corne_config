@@ -26,5 +26,6 @@ Ein kompaktes Ein-Tasten-Keypad für spezifische Shortcuts.
 * **Controller:** RP2040 (CircuitPython/code.py)
 * **Funktion:** Toggle-Switch für `Strg +` und `Strg -`.
 * **Hardware:** Mechanischer MX-Switch, integrierte Warn-LED (Wechselblinker), 3D-gedrucktes Gehäuse mit Einschubschienen
+  
 ![Macro Pad](./img/MinMac-01.jpg)
 ![Macro Pad](./img/MinMac-02.jpg)
