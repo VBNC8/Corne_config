@@ -1,0 +1,15 @@
+name: Draw ZMK keymap
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "config/*.keymap" # Triggert nur, wenn du die Keymap änderst
+
+jobs:
+  draw:
+    uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
+    with:
+      keymap_lines: 16 # Passt die Höhe für 40% Boards wie das Corne an
+      output_folder: img
+      install_args: 'keymap-drawer' 
+      config_path: 'keymap_drawer.config.yaml' # Optional, falls du Farben anpassen willst
