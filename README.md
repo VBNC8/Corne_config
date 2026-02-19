@@ -10,6 +10,7 @@ Mein primäres Split-Keyboard.
 
 ### Keymap
 Die folgende Grafik wird bei jedem Push automatisch aktualisiert:
+
 ![Keymap](./img/corne.svg)
 
 ---
@@ -28,4 +29,5 @@ Ein kompaktes Ein-Tasten-Keypad für spezifische Shortcuts.
 * **Hardware:** Mechanischer MX-Switch, integrierte Warn-LED (Wechselblinker), 3D-gedrucktes Gehäuse mit Einschubschienen
   
 ![Macro Pad](./img/MinMac-01.jpg)
+
 ![Macro Pad](./img/MinMac-02.jpg)
